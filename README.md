@@ -1,4 +1,4 @@
-duration
+Duration
 ========
 
 Helper for formatting a duration into human readable text
