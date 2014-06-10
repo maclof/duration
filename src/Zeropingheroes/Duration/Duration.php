@@ -90,7 +90,7 @@ class Duration {
 	 *
 	 * @return string
 	 */
-	public function longFormat()
+	public function longFormat($duration)
 	{
 		if( isset($duration) ) $this->__construct($duration);
 		if( $this->hoursSection >= 1 )
@@ -101,14 +101,21 @@ class Duration {
 				' %s ' . str_plural('second', $this->secondsSection)
 				, $this->hoursSection, $this->minutesSection, $this->secondsSection);
 		}
-		if( $this->minutesSection >= 1 )
+		if( $this->minutesSection >= 1 && $this->secondsSection )
 		{
 			return sprintf(
 				' %s ' . str_plural('minute', $this->minutesSection) .
 				' %s ' . str_plural('second', $this->secondsSection)
 				, $this->minutesSection, $this->secondsSection);
 		}
-		
+		if( $this->minutesSection >= 1 )
+		{
+			return sprintf(
+				' %s ' . str_plural('minute', $this->minutesSection)
+				, $this->minutesSection);
+		}
+
+
 		return sprintf(' %s ' . str_plural('second', $this->secondsSection), $this->secondsSection);
 	}
 
